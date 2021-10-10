@@ -13,6 +13,7 @@ const useStyles = makeStyles(() => ({
         padding: '0 30px',
         justifyContent: "space-between",
         display: "flex",
+        marginBottom: "20px",
 
     },
     navlinks: {
