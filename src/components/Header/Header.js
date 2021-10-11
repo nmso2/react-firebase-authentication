@@ -2,7 +2,7 @@ import { AppBar, Button, CssBaseline, Toolbar, Typography } from '@mui/material'
 import { makeStyles } from '@mui/styles';
 import React from 'react';
 import { Link } from 'react-router-dom';
-import useFirebae from '../../hooks/useFirebase';
+import useAuth from '../../hooks/useAuth';
 
 const useStyles = makeStyles(() => ({
     root: {
@@ -40,7 +40,7 @@ const useStyles = makeStyles(() => ({
 
 const Header = () => {
     const classes = useStyles();
-    const { user, logOut } = useFirebae();
+    const { user, logOut } = useAuth();
     return (
         <div>
             <AppBar className={classes.root} position="static">
@@ -53,12 +53,19 @@ const Header = () => {
                         <Link to="/" className={classes.link}>
                             Home
                         </Link>
-                        <Link to="/registration" className={classes.link}>
-                            Registration
+                        <Link to="/shipping" className={classes.link}>
+                            Shipping
                         </Link>
-                        <Link to="/login" className={classes.link}>
-                            Login
-                        </Link>
+                        {!user?.displayName ? <div>
+                            <Link to="/registration" className={classes.link}>
+                                Registration
+                            </Link>
+                            <Link to="/login" className={classes.link}>
+                                Login
+                            </Link>
+                        </div> : <Link to="/" className={classes.link}>
+                            Hello, {user.displayName}
+                        </Link>}
                         {user?.displayName && <Button sx={{ marginLeft: '20px' }} onClick={logOut} variant='contained'>Log Out</Button>}
                     </div>
                 </Toolbar>
