@@ -13,6 +13,7 @@ import NotFound from './components/NotFound/NotFound'
 import Header from './components/Header/Header';
 import AuthProvider from './context/AuthProvider';
 import Shipping from './components/Shipping/Shipping';
+import PrivateRoute from './components/PrivateRoute/PrivateRoute';
 
 function App() {
   return (
@@ -33,9 +34,9 @@ function App() {
             <Route path="/login">
               <Login></Login>
             </Route>
-            <Route path="/shipping">
+            <PrivateRoute path="/shipping">
               <Shipping></Shipping>
-            </Route>
+            </PrivateRoute>
             <Route path="*">
               <NotFound></NotFound>
             </Route>
